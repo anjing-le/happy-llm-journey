@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="370" viewBox="0 0 1200 370" role="img" aria-labelledby="title desc">
+<title id="title">安静 AI Coding：知识、实践方法、活动</title>
+<desc id="desc">知识支撑方法，方法指导活动，活动反馈持续修正方法与知识。</desc>
+<style>text{font-family:"Chalkboard SE","Comic Sans MS","PingFang SC","Microsoft YaHei",sans-serif;fill:#10212e}.label{font-size:28px;font-weight:800}.sub{font-size:18px;fill:#61707d}.line{stroke:#10212e;stroke-width:3.5;fill:none;stroke-linecap:round;stroke-linejoin:round}</style>
+<rect width="1200" height="370" rx="28" fill="#fffdf7"/>
+<path d="M35 33 Q190 22 390 30 T1160 34 Q1172 160 1164 335 Q940 348 590 337 T39 339 Q26 190 35 33Z" fill="#fffaf3" stroke="#4c565c" stroke-width="4"/>
+<text x="72" y="87" font-size="39" font-weight="900">Learn → Practice → Grow</text>
+<text x="74" y="122" class="sub">安静 AI Coding · 把理解变成方法，在实践中持续打磨</text>
+<path d="M363 221 H423 M753 221 H813" stroke="#a0aab5" stroke-width="4" stroke-dasharray="6 8"/>
+<path d="M413 214 L423 221 L413 228 M803 214 L813 221 L803 228" fill="none" stroke="#a0aab5" stroke-width="3"/>
+<g transform="translate(74 158)">
+<path d="M3 5 Q130 -3 278 5 L282 111 Q140 118 0 111Z" fill="#eff7ff" stroke="#499ce9" stroke-width="4"/>
+<path d="M21 29 Q39 24 56 31 Q74 24 91 29 V74 Q74 69 56 77 Q39 69 21 74Z M56 31 V77" class="line"/>
+<text x="110" y="47" class="label">知识</text><text x="110" y="81" class="sub">理解问题 · 查找依据</text>
+</g>
+<g transform="translate(444 158)">
+<path d="M3 5 Q130 -3 278 5 L282 111 Q140 118 0 111Z" fill="#f0f8ee" stroke="#7db97a" stroke-width="4"/>
+<rect x="27" y="24" width="54" height="61" rx="5" class="line"/><path d="M38 41 L44 47 L54 35 M61 42 H70 M38 63 L44 69 L54 57 M61 64 H70" class="line"/>
+<text x="101" y="47" class="label">实践方法</text><text x="101" y="81" class="sub">经验归纳 · 验证边界</text>
+</g>
+<g transform="translate(814 158)">
+<path d="M3 5 Q130 -3 278 5 L282 111 Q140 118 0 111Z" fill="#f4f0ff" stroke="#9685ed" stroke-width="4"/>
+<path d="M25 31 H84 V74 H25Z M41 87 H68 M54 75 V86 M47 43 L66 53 L47 64Z" class="line"/>
+<text x="111" y="47" class="label">活动</text><text x="111" y="81" class="sub">动手实践 · 检验方法</text>
+</g>
+<path d="M958 281 V307 H222 V283 M215 291 L222 283 L229 291" stroke="#b4a5ce" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+<rect x="438" y="291" width="326" height="30" rx="12" fill="#fffaf3"/>
+<text x="601" y="312" text-anchor="middle" font-size="17" fill="#756684">实践反馈，持续修正方法与知识</text>
+</svg>
