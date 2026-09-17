@@ -1,0 +1,57 @@
+schema_version: "1.0"
+
+assignment:
+  id: mini-llm-gateway
+  title: Mini LLM Gateway
+  version: "0.1.0"
+  status: draft
+  locale: zh-CN
+  difficulty: advanced
+  duration_days:
+    min: 10
+    max: 14
+  audience:
+    - new-graduate
+    - experienced-hire
+  delivery_shape: local-runnable-api-and-operator-view
+  default_integration_mode: openai-compatible-mock-providers
+  source_basis: 独立设计的最小 AI 网关题目，不依赖空壳参考仓库实现
+
+learning_outcomes:
+  - 实现最小 OpenAI-compatible 请求与响应契约
+  - 在明确规则下完成模型路由、超时和受控回退
+  - 设计租户隔离、限流和预算保护
+  - 记录可核对的用量、错误与脱敏审计信息
+
+required_artifacts:
+  - runnable-source
+  - readme
+  - prd
+  - implementation-plan
+  - automated-tests
+  - test-evidence
+  - ai-collaboration-record
+  - retrospective
+
+public_acceptance_ids:
+  - AC-01
+  - AC-02
+  - AC-03
+  - AC-04
+  - AC-05
+  - AC-06
+  - AC-07
+  - AC-08
+  - AC-09
+  - AC-10
+
+safety:
+  real_provider_credentials_allowed: false
+  credential_logging_allowed: false
+  cross_tenant_data_allowed: false
+  local_mock_required: true
+
+review:
+  ai_pre_review: true
+  leader_acceptance: true
+  live_change_ready: true

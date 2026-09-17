@@ -1,0 +1,56 @@
+schema_version: "1.0"
+
+assignment:
+  id: finance-reconcile-agent
+  title: 财务对账审核 Agent
+  version: "0.1.0"
+  status: draft
+  locale: zh-CN
+  difficulty: intermediate-to-advanced
+  duration_days:
+    min: 8
+    max: 14
+  audience:
+    - new-graduate
+    - experienced-hire
+  delivery_shape: local-runnable-review-workbench
+  default_integration_mode: synthetic-csv-and-rule-based-matching
+  source_basis: 脱敏后的财务对账审核领域能力，不包含参考实现代码
+
+learning_outcomes:
+  - 对不可靠输入做校验并形成可追溯的数据批次
+  - 设计可解释且可调参数的匹配逻辑
+  - 区分自动匹配、异常和必须人工确认的边界
+  - 建立不可丢失的复核与审计链路
+
+required_artifacts:
+  - runnable-source
+  - readme
+  - prd
+  - implementation-plan
+  - automated-tests
+  - test-evidence
+  - ai-collaboration-record
+  - retrospective
+
+public_acceptance_ids:
+  - AC-01
+  - AC-02
+  - AC-03
+  - AC-04
+  - AC-05
+  - AC-06
+  - AC-07
+  - AC-08
+  - AC-09
+
+safety:
+  real_credentials_allowed: false
+  production_financial_data_allowed: false
+  automatic_financial_posting_allowed: false
+  local_mock_required: true
+
+review:
+  ai_pre_review: true
+  leader_acceptance: true
+  live_change_ready: true

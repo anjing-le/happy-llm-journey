@@ -1,0 +1,55 @@
+schema_version: "1.0"
+
+assignment:
+  id: evidence-rag-agent
+  title: 有证据的 RAG 知识助手
+  version: "0.1.0"
+  status: draft
+  locale: zh-CN
+  difficulty: intermediate
+  duration_days:
+    min: 8
+    max: 14
+  audience:
+    - new-graduate
+    - experienced-hire
+  delivery_shape: local-runnable-web-or-api-product
+  default_integration_mode: local-retrieval-and-mock-answer-provider
+  source_basis: 脱敏后的知识库与 RAG 领域能力，不包含参考实现代码
+
+learning_outcomes:
+  - 建立文档导入、切片、索引和状态链路
+  - 实现可解释检索与上下文组装
+  - 生成能够定位原文的引用
+  - 在证据不足时拒绝编造并提供下一步
+
+required_artifacts:
+  - runnable-source
+  - readme
+  - prd
+  - implementation-plan
+  - automated-tests
+  - test-evidence
+  - ai-collaboration-record
+  - retrospective
+
+public_acceptance_ids:
+  - AC-01
+  - AC-02
+  - AC-03
+  - AC-04
+  - AC-05
+  - AC-06
+  - AC-07
+  - AC-08
+
+safety:
+  real_credentials_allowed: false
+  production_data_allowed: false
+  external_side_effects_by_default: false
+  local_mock_required: true
+
+review:
+  ai_pre_review: true
+  leader_acceptance: true
+  live_change_ready: true

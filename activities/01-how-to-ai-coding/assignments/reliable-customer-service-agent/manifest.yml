@@ -1,0 +1,56 @@
+schema_version: "1.0"
+
+assignment:
+  id: reliable-customer-service-agent
+  title: 可靠客服 Agent
+  version: "0.1.0"
+  status: draft
+  locale: zh-CN
+  difficulty: intermediate
+  duration_days:
+    min: 8
+    max: 14
+  audience:
+    - new-graduate
+    - experienced-hire
+  delivery_shape: local-runnable-service-console
+  default_integration_mode: mock-channel-and-local-knowledge
+  source_basis: 脱敏后的可靠客服领域能力，不包含参考实现代码
+
+learning_outcomes:
+  - 管理多轮会话状态与上下文边界
+  - 基于证据回答并识别无证据场景
+  - 设计转人工规则和可恢复交接
+  - 留下可供运营复盘的质量与审计记录
+
+required_artifacts:
+  - runnable-source
+  - readme
+  - prd
+  - implementation-plan
+  - automated-tests
+  - test-evidence
+  - ai-collaboration-record
+  - retrospective
+
+public_acceptance_ids:
+  - AC-01
+  - AC-02
+  - AC-03
+  - AC-04
+  - AC-05
+  - AC-06
+  - AC-07
+  - AC-08
+  - AC-09
+
+safety:
+  real_credentials_allowed: false
+  production_data_allowed: false
+  external_messages_by_default: false
+  local_mock_required: true
+
+review:
+  ai_pre_review: true
+  leader_acceptance: true
+  live_change_ready: true

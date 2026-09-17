@@ -1,0 +1,35 @@
+name: Submission baseline check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check required files, evidence, and common secret risks
+        run: python3 scripts/check_submission.py --root . --template
+
+  final-submission:
+    if: github.event_name == 'pull_request' && startsWith(github.head_ref, 'stage/06-final')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Require completed documents and actual evidence
+        run: python3 scripts/check_submission.py --root .

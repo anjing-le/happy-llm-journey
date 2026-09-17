@@ -1,0 +1,34 @@
+name: 阶段跟踪
+description: 跟踪计划、实现、证据、返工、现场变更或最终复盘阶段
+title: "[阶段] "
+labels: ["stage"]
+body:
+  - type: dropdown
+    attributes:
+      label: 阶段
+      options:
+        - PRD 与计划
+        - 核心实现
+        - 测试与证据
+        - AI 预审返工
+        - 安静验收返工
+        - 临时新增需求
+        - 最终复盘
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 本阶段目标与完成定义
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 计划产物与验证方式
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 风险、依赖或待确认事项
+    validations:
+      required: true
+

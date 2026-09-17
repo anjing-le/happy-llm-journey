@@ -1,0 +1,28 @@
+name: 领取与澄清
+description: 确认领取作业并集中记录需求问题、选项和可逆假设
+title: "[领取/澄清] "
+labels: ["clarification"]
+body:
+  - type: checkboxes
+    attributes:
+      label: 边界确认
+      options:
+        - label: 我不会提交凭证、个人信息、真实雇主代码、客户数据或商业秘密
+          required: true
+        - label: 我不会共享或中转 Codex 账号、会话、凭证或 API Key
+          required: true
+        - label: 我理解活动不承诺就业结果，最终结论以组织者验收记录为准
+          required: true
+  - type: textarea
+    attributes:
+      label: 我对目标的理解
+      description: 用自己的话说明目标、用户和成功结果。
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 澄清问题
+      description: 每个问题写明歧义、候选方案、推荐方案和不回答时采用的可逆假设。
+    validations:
+      required: true
+

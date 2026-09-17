@@ -1,0 +1,56 @@
+schema_version: "1.0"
+
+assignment:
+  id: order-ops-executor-agent
+  title: 订单运营执行 Agent
+  version: "0.1.0"
+  status: draft
+  locale: zh-CN
+  difficulty: advanced
+  duration_days:
+    min: 10
+    max: 14
+  audience:
+    - new-graduate
+    - experienced-hire
+  delivery_shape: local-runnable-operations-console
+  default_integration_mode: synthetic-orders-and-mock-tools
+  source_basis: 脱敏后的订单运营执行领域能力，不包含参考实现代码
+
+learning_outcomes:
+  - 将自然语言意图拆成可审查的动作计划
+  - 为低风险执行和高风险审批划清边界
+  - 用幂等键防止重复副作用
+  - 对失败、补偿和人工决策留下审计记录
+
+required_artifacts:
+  - runnable-source
+  - readme
+  - prd
+  - implementation-plan
+  - automated-tests
+  - test-evidence
+  - ai-collaboration-record
+  - retrospective
+
+public_acceptance_ids:
+  - AC-01
+  - AC-02
+  - AC-03
+  - AC-04
+  - AC-05
+  - AC-06
+  - AC-07
+  - AC-08
+  - AC-09
+
+safety:
+  real_credentials_allowed: false
+  production_orders_allowed: false
+  external_side_effects_by_default: false
+  local_mock_required: true
+
+review:
+  ai_pre_review: true
+  leader_acceptance: true
+  live_change_ready: true
