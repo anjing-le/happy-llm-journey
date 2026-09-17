@@ -18,4 +18,4 @@
 
 ## 当前进度
 
-三个模块的框架已建立。[第一期「如何 AI-Coding」](activities/01-how-to-ai-coding/README.md)已归集此前活动材料；知识和实践方法的细分结构继续共同打磨。
+三个模块的框架已建立。[第一期「vibe coding 最佳实践」](activities/01-how-to-ai-coding/README.md)已归集此前活动材料；[第二期「一群人 vibe coding 最佳实践」](activities/02-team-vibe-coding/README.md)已建立入口，内容待设计。知识和实践方法的细分结构继续共同打磨。

@@ -6,6 +6,8 @@
 
 ## 活动目录
 
-- [第一期 · 如何 AI-Coding](01-how-to-ai-coding/README.md)：沿用此前的项目制实践材料，七道题面仍为草案。
+- [第一期 · vibe coding 最佳实践](01-how-to-ai-coding/README.md)：沿用此前的项目制实践材料，七道题面仍为草案。
+
+- [第二期 · 一群人 vibe coding 最佳实践](02-team-vibe-coding/README.md)：已确定名称，内容待设计。
 
 [返回首页](../README.md)
