@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="370" viewBox="0 0 1200 370" role="img" aria-labelledby="title desc">
-<title id="title">安静 AI Coding：知识、实践方法、活动</title>
+<title id="title">Happy LLM Journey：知识、实践方法、活动</title>
 <desc id="desc">知识支撑方法，方法指导活动，活动反馈持续修正方法与知识。</desc>
 <style>text{font-family:"Chalkboard SE","Comic Sans MS","PingFang SC","Microsoft YaHei",sans-serif;fill:#10212e}.label{font-size:28px;font-weight:800}.sub{font-size:18px;fill:#61707d}.line{stroke:#10212e;stroke-width:3.5;fill:none;stroke-linecap:round;stroke-linejoin:round}</style>
 <rect width="1200" height="370" rx="28" fill="#fffdf7"/>
 <path d="M35 33 Q190 22 390 30 T1160 34 Q1172 160 1164 335 Q940 348 590 337 T39 339 Q26 190 35 33Z" fill="#fffaf3" stroke="#4c565c" stroke-width="4"/>
 <text x="72" y="87" font-size="39" font-weight="900">Learn → Practice → Grow</text>
-<text x="74" y="122" class="sub">安静 AI Coding · 把理解变成方法，在实践中持续打磨</text>
+<text x="74" y="122" class="sub">Happy LLM Journey · 把理解变成方法，在实践中持续打磨</text>
 <path d="M363 221 H423 M753 221 H813" stroke="#a0aab5" stroke-width="4" stroke-dasharray="6 8"/>
 <path d="M413 214 L423 221 L413 228 M803 214 L813 221 L803 228" fill="none" stroke="#a0aab5" stroke-width="3"/>
 <g transform="translate(74 158)">

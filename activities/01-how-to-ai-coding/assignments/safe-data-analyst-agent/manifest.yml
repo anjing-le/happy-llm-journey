@@ -1,0 +1,56 @@
+schema_version: "1.0"
+
+assignment:
+  id: safe-data-analyst-agent
+  title: 安全数据分析 Agent
+  version: "0.1.0"
+  status: draft
+  locale: zh-CN
+  difficulty: intermediate-to-advanced
+  duration_days:
+    min: 8
+    max: 14
+  audience:
+    - new-graduate
+    - experienced-hire
+  delivery_shape: local-runnable-analysis-workbench
+  default_integration_mode: local-dataset-and-deterministic-nl2sql
+  source_basis: 脱敏后的数据分析 Agent 领域能力，不包含参考实现代码
+
+learning_outcomes:
+  - 把业务问题映射到明确的指标与数据集口径
+  - 生成受约束、只读且可解释的查询
+  - 对 SQL 做独立安全校验而非信任模型输出
+  - 用图表和摘要表达结果、限制与追问方向
+
+required_artifacts:
+  - runnable-source
+  - readme
+  - prd
+  - implementation-plan
+  - automated-tests
+  - test-evidence
+  - ai-collaboration-record
+  - retrospective
+
+public_acceptance_ids:
+  - AC-01
+  - AC-02
+  - AC-03
+  - AC-04
+  - AC-05
+  - AC-06
+  - AC-07
+  - AC-08
+  - AC-09
+
+safety:
+  real_credentials_allowed: false
+  production_data_allowed: false
+  write_sql_allowed: false
+  local_mock_required: true
+
+review:
+  ai_pre_review: true
+  leader_acceptance: true
+  live_change_ready: true

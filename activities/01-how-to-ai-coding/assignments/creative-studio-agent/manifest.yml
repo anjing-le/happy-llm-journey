@@ -1,0 +1,55 @@
+schema_version: "1.0"
+
+assignment:
+  id: creative-studio-agent
+  title: AI 创作工作室 Agent
+  version: "0.1.0"
+  status: draft
+  locale: zh-CN
+  difficulty: foundation-to-intermediate
+  duration_days:
+    min: 7
+    max: 10
+  audience:
+    - new-graduate
+    - experienced-hire
+  delivery_shape: local-runnable-web-product
+  default_integration_mode: deterministic-mock-provider
+  source_basis: 脱敏后的 AIGC 创作平台领域能力，不包含参考实现代码
+
+learning_outcomes:
+  - 把模糊创作意图澄清为可执行 Brief
+  - 设计可追踪的 Prompt 版本与生成任务状态
+  - 用 Provider Adapter 隔离模型依赖并处理失败
+  - 让生成资产能够回溯输入、版本和处理过程
+
+required_artifacts:
+  - runnable-source
+  - readme
+  - prd
+  - implementation-plan
+  - automated-tests
+  - test-evidence
+  - ai-collaboration-record
+  - retrospective
+
+public_acceptance_ids:
+  - AC-01
+  - AC-02
+  - AC-03
+  - AC-04
+  - AC-05
+  - AC-06
+  - AC-07
+  - AC-08
+
+safety:
+  real_credentials_allowed: false
+  production_data_allowed: false
+  external_side_effects_by_default: false
+  local_mock_required: true
+
+review:
+  ai_pre_review: true
+  leader_acceptance: true
+  live_change_ready: true

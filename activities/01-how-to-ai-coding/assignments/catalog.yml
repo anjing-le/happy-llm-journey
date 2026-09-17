@@ -1,0 +1,119 @@
+schema_version: "1.0"
+
+catalog:
+  id: anjing-ai-coding-assignments
+  title: 安静 AI-Coding 项目题库
+  status: draft
+  locale: zh-CN
+  last_updated: "2026-08-13"
+
+defaults:
+  duration_days:
+    min: 7
+    max: 14
+  audience:
+    - new-graduate
+    - experienced-hire
+  delivery_mode: private-github-repository
+  runtime_policy: local-and-mock-first
+  credential_policy: no-real-credentials
+  external_cost_policy: written-approval-required
+
+assignments:
+  - order: 1
+    id: creative-studio-agent
+    title: AI 创作工作室 Agent
+    track: generative-content
+    difficulty: foundation-to-intermediate
+    focus:
+      - intent-to-brief
+      - prompt-versioning
+      - asynchronous-job-state
+      - asset-traceability
+    manifest: assignments/creative-studio-agent/manifest.yml
+    student_visible: assignments/creative-studio-agent/student-visible/ASSIGNMENT.md
+    status: draft
+
+  - order: 2
+    id: evidence-rag-agent
+    title: 有证据的 RAG 知识助手
+    track: knowledge-and-retrieval
+    difficulty: intermediate
+    focus:
+      - document-ingestion
+      - retrieval
+      - citation-grounding
+      - no-evidence-fallback
+    manifest: assignments/evidence-rag-agent/manifest.yml
+    student_visible: assignments/evidence-rag-agent/student-visible/ASSIGNMENT.md
+    status: draft
+
+  - order: 3
+    id: reliable-customer-service-agent
+    title: 可靠客服 Agent
+    track: service-and-operations
+    difficulty: intermediate
+    focus:
+      - multi-turn-context
+      - grounded-response
+      - human-handoff
+      - operational-audit
+    manifest: assignments/reliable-customer-service-agent/manifest.yml
+    student_visible: assignments/reliable-customer-service-agent/student-visible/ASSIGNMENT.md
+    status: draft
+
+  - order: 4
+    id: safe-data-analyst-agent
+    title: 安全数据分析 Agent
+    track: analytics
+    difficulty: intermediate-to-advanced
+    focus:
+      - metric-semantics
+      - text-to-sql
+      - sql-safety
+      - explainable-insights
+    manifest: assignments/safe-data-analyst-agent/manifest.yml
+    student_visible: assignments/safe-data-analyst-agent/student-visible/ASSIGNMENT.md
+    status: draft
+
+  - order: 5
+    id: finance-reconcile-agent
+    title: 财务对账审核 Agent
+    track: risk-and-review
+    difficulty: intermediate-to-advanced
+    focus:
+      - structured-import
+      - explainable-matching
+      - exception-review
+      - audit-trail
+    manifest: assignments/finance-reconcile-agent/manifest.yml
+    student_visible: assignments/finance-reconcile-agent/student-visible/ASSIGNMENT.md
+    status: draft
+
+  - order: 6
+    id: order-ops-executor-agent
+    title: 订单运营执行 Agent
+    track: tool-use-and-execution
+    difficulty: advanced
+    focus:
+      - plan-before-action
+      - approval-boundaries
+      - idempotency
+      - compensation-and-audit
+    manifest: assignments/order-ops-executor-agent/manifest.yml
+    student_visible: assignments/order-ops-executor-agent/student-visible/ASSIGNMENT.md
+    status: draft
+
+  - order: 7
+    id: mini-llm-gateway
+    title: Mini LLM Gateway
+    track: ai-infrastructure
+    difficulty: advanced
+    focus:
+      - openai-compatible-contract
+      - routing-and-fallback
+      - rate-and-budget-control
+      - usage-and-redaction
+    manifest: assignments/mini-llm-gateway/manifest.yml
+    student_visible: assignments/mini-llm-gateway/student-visible/ASSIGNMENT.md
+    status: draft
