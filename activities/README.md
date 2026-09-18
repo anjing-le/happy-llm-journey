@@ -8,8 +8,8 @@
 
 三期按「逐步理解 LLM → 个人运用 → 团队协作」的顺序组织。
 
-1. [第一期 · 逐渐学会 LLM 相关知识](01-learn-llm/README.md)：已确定方向，知识范围与学习路线待规划。
-2. [第二期 · 如何 vibe coding](02-how-to-vibe-coding/README.md)：沿用此前的项目制实践材料，七道题面仍为草案。
-3. [第三期 · 团队如何 vibe coding](03-team-vibe-coding/README.md)：已确定方向，目标、流程与内容待设计。
+1. [第一期 · 从 agent 开发学会 llm 所有](01-learn-llm/README.md)：已确定方向，知识范围与学习路线待规划。
+2. [第二期 · 一个人如何做好 vibe coding](02-how-to-vibe-coding/README.md)：沿用此前的项目制实践材料，七道题面仍为草案。
+3. [第三期 · 一群人如何做好 vibe coding](03-team-vibe-coding/README.md)：已确定方向，目标、流程与内容待设计。
 
 [返回首页](../README.md)
