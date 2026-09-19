@@ -1,7 +1,7 @@
 # 协作约定
 
 - 先读 README.md 和目标模块的 README.md，再按任务读取相关内容。设计活动或跨模块关联时，读取 activities/DESIGN.md。
-- 当前只确定 knowledge、practices、activities 三个内容模块；未经讨论，不主动扩展分类或批量填充内容。
+- 内容分为 knowledge、practices、activities。知识当前仅设 engineering、algorithms 两类，不单设人与 AI，也不预建更深分类。最佳实践先按 practices/README.md 的列表积累，成体系后再讨论提取文件夹。未经讨论，不主动扩展分类或批量填充内容。
 - 知识、方法和活动通过相对链接关联，同一份内容保持一个维护来源。
 - 区分事实、推测、个人经验与未验证信息。方法要保留适用条件、依据和限制。
 - 活动反馈可以修正方法和知识，不把问题一概归因于参与者。
