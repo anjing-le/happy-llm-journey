@@ -1,18 +1,5 @@
 ![Happy LLM Journey：知识、实践方法、活动；一起学，一起做，不断变好](assets/journey-poster.png)
 
-<table width="100%">
-  <tr>
-    <td width="33%" align="center">
-      <a href="knowledge/README.md"><strong>学习</strong></a><br />
-      <sub>理解原理，查找知识</sub>
-    </td>
-    <td width="34%" align="center">
-      <a href="practices/README.md"><strong>最佳实践</strong></a><br />
-      <sub>沉淀经验，复用方法</sub>
-    </td>
-    <td width="33%" align="center">
-      <a href="activities/README.md"><strong>活动</strong></a><br />
-      <sub>动手实践，检验所学</sub>
-    </td>
-  </tr>
-</table>
+- [学习](knowledge/README.md)：积累工程与算法知识，理解原理，按需查阅。
+- [最佳实践](practices/README.md)：总结亲手做过的经验，沉淀可复用的方法与工具。
+- [活动](activities/README.md)：围绕具体任务运用方法，在实践中学习、验证和改进。
