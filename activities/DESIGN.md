@@ -32,7 +32,7 @@
 目前规划三期，优先把这三期打磨完整，不预设需要不断增加期数：
 
 1. [从 agent 开发学会 llm 所有](01-learn-llm/README.md)。
-2. [一个人如何做好 vibe coding](02-how-to-vibe-coding/README.md)。
+2. [如何成为 AI 时代的超级上下文](02-how-to-vibe-coding/README.md)。
 3. [一群人如何做好 vibe coding](03-team-vibe-coding/README.md)，包含团队交付后的持续维护和迭代。
 
 活动名称代表方向，不能代替知识范围和完成标准；各期具体设计继续逐步确认。
