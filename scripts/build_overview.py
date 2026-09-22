@@ -10,7 +10,8 @@ LABELS = {'assignments': '候选题目', 'docs': '说明文档', 'templates': '�
           'student-repo': '学员仓库', 'student-visible': '公开题面',
           'prompts': '阶段提示词', 'evidence': '验证证据', '.github': 'GitHub 协作'}
 SECTION_FILES = {'activities/01-learn-llm/README.md',
-                 'activities/02-how-to-vibe-coding/DESIGN.md'}
+                 'activities/02-how-to-vibe-coding/DESIGN.md',
+                 'activities/03-team-vibe-coding/README.md'}
 
 
 def plain(text):
