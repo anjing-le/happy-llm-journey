@@ -10,4 +10,8 @@
 
 - [从能查数到决策链](from-query-to-decision.md)：AI 问数系统的演进、数据治理与决策闭环。个人经验，验证范围待补充。
 
+## 待打磨
+
+- [Codex vibe coding 最佳实践](codex-vibe-coding.md)：原创，先记录真实经验，再逐步整理方法。
+
 [返回首页](../README.md)
