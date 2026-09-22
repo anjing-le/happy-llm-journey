@@ -1,4 +1,4 @@
-# Codex vibe coding 最佳实践
+# vibe coding 最佳实践
 
 **原创**
 

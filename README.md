@@ -5,3 +5,5 @@
 - [活动](activities/README.md)：围绕具体任务运用方法，在实践中学习、验证和改进。
 
 [目录总览](https://anjing-le.github.io/happy-llm-journey/overview.html) · 展开结构，悬停查看说明。
+
+[目标与维护规则](DESIGN.md)
