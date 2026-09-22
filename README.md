@@ -3,3 +3,5 @@
 - [学习](knowledge/README.md)：积累工程与算法知识，理解原理，按需查阅。
 - [最佳实践](practices/README.md)：总结亲手做过的经验，沉淀可复用的方法与工具。
 - [活动](activities/README.md)：围绕具体任务运用方法，在实践中学习、验证和改进。
+
+[目录总览](https://anjing-le.github.io/happy-llm-journey/overview.html) · 展开结构，悬停查看说明。
