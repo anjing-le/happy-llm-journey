@@ -29,4 +29,4 @@
 
 方法进入[最佳实践](../../practices/README.md)，概念与理解进入[知识](../../knowledge/README.md)，按需补齐。下一步选一个任务、一条真实经验走通试跑，再改设计。
 
-[返回第二期](README.md) · [共同原则](../DESIGN.md) · [待办](../../TODO.md)
+[返回第二期](README.md) · [共同原则](../DESIGN.md) · [待办](../../README.md#待办)

@@ -14,4 +14,4 @@
 
 - [vibe coding 最佳实践](codex-vibe-coding.md)：原创，先记录真实经验，再逐步整理方法。
 
-[目标与维护规则](../DESIGN.md) · [返回首页](../README.md)
+[目标与维护规则](../README.md#维护规则) · [返回首页](../README.md)

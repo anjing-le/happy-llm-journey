@@ -1,4 +1,5 @@
 """Rebuild overview.html from the three Markdown modules: python3 scripts/build_overview.py."""
+import html
 import json
 import re
 from pathlib import Path
@@ -69,8 +70,46 @@ def directory(path):
     return node
 
 
+def inline_md(value):
+    value = html.escape(value)
+    def link(match):
+        label, url = match.groups()
+        if not url.startswith(('https://', 'http://')):
+            url = GITHUB + quote(url, safe='/#')
+        return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + label + '</a>'
+    value = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', link, value)
+    value = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', value)
+    return re.sub(r'`(.+?)`', r'<code>\1</code>', value)
+
+
+def reference_sections():
+    sections = re.split(r'^## (.+)\n', (ROOT / 'README.md').read_text(), flags=re.M)
+    output = []
+    for i in range(1, len(sections), 2):
+        title, body = sections[i:i+2]
+        parts = []
+        in_list = False
+        for line in body.strip().splitlines():
+            if line.startswith('- '):
+                if not in_list:
+                    parts.append('<ul>')
+                    in_list = True
+                line = re.sub(r'^- \[ \] ', '', line) if line.startswith('- [ ] ') else line[2:]
+                parts.append('<li>' + inline_md(line) + '</li>')
+            else:
+                if in_list:
+                    parts.append('</ul>')
+                    in_list = False
+                if line.strip():
+                    parts.append('<p>' + inline_md(line) + '</p>')
+        if in_list:
+            parts.append('</ul>')
+        output.append('<details class="reference"><summary>' + html.escape(title) + '</summary><div>' + ''.join(parts) + '</div></details>')
+    return '\n'.join(output)
+
+
 data = [directory(ROOT / name) for name in ('knowledge', 'practices', 'activities')]
 template = (ROOT / 'scripts/overview.template.html').read_text()
 payload = json.dumps(data, ensure_ascii=False).replace('<', '\\u003c')
-(ROOT / 'overview.html').write_text(template.replace('/*__TREE_DATA__*/[]', payload))
+(ROOT / 'overview.html').write_text(template.replace('/*__TREE_DATA__*/[]', payload).replace('<!--__REFERENCE__-->', reference_sections()))
 print('Generated overview.html from knowledge/, practices/, activities/.')

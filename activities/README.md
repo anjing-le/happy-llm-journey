@@ -6,4 +6,4 @@
 2. [如何成为 AI 时代的超级上下文](02-how-to-vibe-coding/README.md)：提升自己，运用并积累最佳实践。设计初稿，先从 coding 开始。
 3. [一群人如何做好 vibe coding](03-team-vibe-coding/README.md)：了解与设计 → 实践与完善，建立适合团队的 AI 协作方式。框架已定。
 
-[共同设计原则](DESIGN.md) · [待办](../TODO.md) · [返回首页](../README.md)
+[共同设计原则](DESIGN.md) · [待办](../README.md#待办) · [返回首页](../README.md)
