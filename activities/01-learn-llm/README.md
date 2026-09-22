@@ -23,4 +23,4 @@
 
 知识进入[工程](../../knowledge/engineering/README.md)或[算法](../../knowledge/algorithms/README.md)，方法进入[最佳实践](../../practices/README.md)；这里仅串联路线，逐项补充。
 
-[返回活动](../README.md) · [待办](../../TODO.md)
+[返回活动](../README.md) · [待办](../../README.md#待办)
