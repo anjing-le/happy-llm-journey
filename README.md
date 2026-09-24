@@ -29,7 +29,7 @@ Codex 是仓库与使用者之间的桥梁：先读仓库内容，再了解使�
 三期框架已定，尚未试跑；当前逐项打磨方法与知识。
 
 - [ ] 为[第三期](activities/03-team-vibe-coding/README.md)选择团队任务，明确完成标准。
-- [ ] 确定[第一期](activities/01-learn-llm/README.md)题目与实践安排。
+- [ ] 对照[外部提纲参考](activities/01-learn-llm/EXTERNAL-OUTLINE.md)及后续材料，确定[第一期](activities/01-learn-llm/README.md)题目与实践安排；以活动目标取舍，不按课程目录堆内容。
 - [ ] 评审[第二期设计](activities/02-how-to-vibe-coding/DESIGN.md)，选一个 coding 任务试跑，再适配旧材料。
 - [ ] 结合题目明确各期参与基础与完成标准。
 - [ ] 梳理工程与算法的必要知识索引，按需补内容。

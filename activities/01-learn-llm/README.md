@@ -21,6 +21,8 @@
 
 交付可复现的 Agent、关键取舍、验证证据与遗留问题。具体题目和标准待定，模型适配不阻塞主线完成。
 
+[外部课程提纲参考](EXTERNAL-OUTLINE.md)已记录，供后续比较取舍，不作为本期定稿。
+
 知识进入[工程](../../knowledge/engineering/README.md)或[算法](../../knowledge/algorithms/README.md)，方法进入[最佳实践](../../practices/README.md)；这里仅串联路线，逐项补充。
 
 [返回活动](../README.md) · [待办](../../README.md#待办)
