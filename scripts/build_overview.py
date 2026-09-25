@@ -10,11 +10,6 @@ GITHUB = 'https://github.com/anjing-le/happy-llm-journey/blob/main/'
 LABELS = {'assignments': '候选题目', 'docs': '说明文档', 'templates': '作业模板',
           'student-repo': '学员仓库', 'student-visible': '公开题面',
           'prompts': '阶段提示词', 'evidence': '验证证据', '.github': 'GitHub 协作'}
-SECTION_FILES = {'activities/01-learn-llm/README.md',
-                 'activities/02-how-to-vibe-coding/DESIGN.md',
-                 'activities/03-team-vibe-coding/README.md'}
-
-
 def plain(text):
     text = re.sub(r'!?\[([^\]]+)\]\([^)]*\)', r'\1', text)
     return re.sub(r'[*`#>]', '', text).strip()
@@ -42,16 +37,6 @@ def md_node(path, kind='文档'):
     node = {'title': plain(title[1]) if title else path.stem,
             'description': excerpt(text), 'path': rel, 'kind': kind,
             'url': GITHUB + quote(rel), 'children': []}
-    if rel in SECTION_FILES:
-        sections = re.split(r'^## (.+)\n', text, flags=re.M)
-        for i in range(1, len(sections), 2):
-            name, body = sections[i:i + 2]
-            section = {'title': name, 'description': excerpt(body), 'path': rel,
-                       'kind': '章节', 'url': node['url'], 'children': []}
-            for match in re.finditer(r'^(?:- |\d+\. )\*\*(.+?)\*\*[：:]\s*(.+)$', body, re.M):
-                section['children'].append({'title': match[1], 'description': plain(match[2]),
-                                            'path': rel, 'kind': '要点', 'url': node['url'], 'children': []})
-            node['children'].append(section)
     return node
 
 
