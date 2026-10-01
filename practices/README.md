@@ -12,6 +12,6 @@
 
 ## 待打磨
 
-- [vibe coding 最佳实践](codex-vibe-coding.md)：原创，使用说明已起草，核心方法待打磨。
+- [vibe coding 最佳实践](codex-vibe-coding.md)：原创，面向企业级项目的个人开发，核心方法待打磨。
 
 [目标与维护规则](../README.md#维护规则) · [返回首页](../README.md)
