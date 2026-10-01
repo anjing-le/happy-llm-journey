@@ -4,3 +4,8 @@
 !.env.example
 __pycache__/
 node_modules/
+dist/
+web/.ssr/
+web/src/generated/
+web/public/repository/
+.wrangler/

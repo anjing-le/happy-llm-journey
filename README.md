@@ -4,7 +4,7 @@
 - [最佳实践](practices/README.md)：总结真实经验，引导使用者形成自己的方法或 Skill。
 - [活动](activities/README.md)：围绕任务运用方法，在实践中学习、验证和改进。
 
-[目录总览](https://anjing-le.github.io/happy-llm-journey/overview.html)
+[目录总览](https://happy-llm.anjing.cc) · [GitHub Pages](https://anjing-le.github.io/happy-llm-journey/)
 
 ## 目标
 
@@ -20,7 +20,20 @@ Codex 是仓库与使用者之间的桥梁：先读仓库内容，再了解使�
 - **写作要求**：优先短段落和列表，共同约定只写一处。区分事实、推测和经验，保留来源、适用条件、证据与限制；草稿不标成已验证。
 - **文章署名**：标题下标注原创或共创、作者及链接，类型由作者或用户确认。导航、规划与模板不按文章处理。
 - **公开边界**：不收录企业内部材料、凭据、个人资料、私密评审或隐藏答案。个性化资料留在使用者环境，共性经验经授权、脱敏后反馈。
-- **页面来源**：HTML 由本页和模块 MD 生成，不另行维护正文；同步步骤见 [AGENTS.md](AGENTS.md)。
+- **页面来源**：`web/` 前端构建时读取本页和模块 MD，自动生成目录、说明与阅读页面；不另行维护正文或生成文件。同步步骤见 [AGENTS.md](AGENTS.md)。
+
+## 开发与发布
+
+内容与前端在同一仓库，各自维护：三个模块存 MD，`web/` 存 React、TypeScript 与 Vite 前端。
+
+```sh
+npm ci
+npm run dev     # 本地开发，修改 MD 自动更新页面
+npm run build   # 检查内容链接、类型，构建到 dist/
+npm run preview # 预览构建结果
+```
+
+`main` 更新后，Cloudflare Pages 自动构建并发布到 [happy-llm.anjing.cc](https://happy-llm.anjing.cc)；GitHub Actions 同步发布 GitHub Pages。旧 `/overview.html` 地址保留。阅读页包含完整静态正文，并提供 Markdown 原文，方便把链接交给 Codex。
 
 ## 待办
 
