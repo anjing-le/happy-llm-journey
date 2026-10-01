@@ -13,3 +13,5 @@
 内容维护在 `knowledge/`、`practices/`、`activities/`；呈现维护在 `web/`。调整交互或样式时，在本地预览检查相关行为及手机布局。部署与开发命令见 README。
 
 本文件维护协作流程，README 维护项目目标、内容规则与待办；同一约定只维护一处。
+
+提交作者和提交者必须使用 `anjing-le <245548353+anjing-le@users.noreply.github.com>`，推送使用 GitHub 账号 `anjing-le`。提交前核对仓库级 Git 身份，不使用全局的其他身份。
