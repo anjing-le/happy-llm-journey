@@ -24,7 +24,7 @@ Codex 是仓库与使用者之间的桥梁：先读仓库内容，再了解使�
 
 ## 开发与发布
 
-内容与前端在同一仓库，各自维护：三个模块存 MD，`web/` 存 React、TypeScript 与 Vite 前端。
+内容与前端在同一仓库，各自维护：三个模块存 MD，`web/` 存 React、TypeScript 与 Vite 前端。本地需要 Node.js 22.12 或更新版本。
 
 ```sh
 npm ci
@@ -33,7 +33,7 @@ npm run build   # 检查内容链接、类型，构建到 dist/
 npm run preview # 预览构建结果
 ```
 
-`main` 更新后，Cloudflare Pages 自动构建并发布到 [happy-llm.anjing.cc](https://happy-llm.anjing.cc)；GitHub Actions 同步发布 GitHub Pages。旧 `/overview.html` 地址保留。阅读页包含完整静态正文，并提供 Markdown 原文，方便把链接交给 Codex。
+`main` 更新后，GitHub Actions 通过部署钩子触发 Cloudflare Pages，发布到 [happy-llm.anjing.cc](https://happy-llm.anjing.cc)，同时发布 GitHub Pages。旧 `/overview.html` 地址保留。阅读页包含完整静态正文，并提供 Markdown 原文，方便把链接交给 Codex。
 
 ## 待办
 

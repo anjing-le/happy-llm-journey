@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy website
 
 on:
   push:
@@ -15,6 +15,18 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  cloudflare:
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: Trigger Cloudflare Pages build
+        env:
+          CF_PAGES_DEPLOY_HOOK: ${{ secrets.CF_PAGES_DEPLOY_HOOK }}
+        run: |
+          test -n "$CF_PAGES_DEPLOY_HOOK"
+          curl --fail --silent --show-error --max-time 30 \
+            --request POST --output /dev/null "$CF_PAGES_DEPLOY_HOOK"
+
   deploy:
     environment:
       name: github-pages
