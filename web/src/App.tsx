@@ -62,7 +62,6 @@ export default function App({ initialPath, ReaderComponent = Reader }: { initial
   const [compact, setCompact] = useState(false);
   const [expansion, setExpansion] = useState<Expansion>({ sequence: 0, open: false });
   const [tip, setTip] = useState<Tip>();
-  const boardRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLAnchorElement>(null);
@@ -77,19 +76,12 @@ export default function App({ initialPath, ReaderComponent = Reader }: { initial
   };
   const clearTip = () => { clearTimeout(hideTimer.current); setTip(undefined); };
   const showTip = (element: HTMLElement, node: ContentNode) => {
+    if (!window.matchMedia('(hover: hover)').matches && !window.document.activeElement?.matches(':focus-visible')) return;
     clearTimeout(hideTimer.current);
     const rect = element.getBoundingClientRect();
     setTip({ id: node.id, title: node.title, description: node.description || '暂无说明。', module: node.id.split('/')[0], left: Math.max(12, Math.min(rect.left + 16, window.innerWidth - 352)), top: Math.max(12, Math.min(rect.bottom + 8, window.innerHeight - 250)) });
   };
-  const jumpToModule = (module: string, smooth = true) => {
-    setActiveModule(module);
-    const board = boardRef.current;
-    const columns = board?.querySelectorAll<HTMLElement>('.column');
-    const column = Array.from(columns || []).find((item) => item.dataset.module === module);
-    if (board && column && columns?.length && window.matchMedia('(max-width: 720px)').matches) {
-      board.scrollTo({ left: column.offsetLeft - columns[0].offsetLeft, behavior: smooth && !window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'instant' });
-    }
-  };
+  const selectModule = (module: string) => setActiveModule(module);
   const scrollToAnchor = (anchor: string) => {
     if (!anchor) { scrollRef.current?.scrollTo({ top: 0 }); return; }
     requestAnimationFrame(() => window.document.getElementById(anchor)?.scrollIntoView({ block: 'start' }));
@@ -104,24 +96,23 @@ export default function App({ initialPath, ReaderComponent = Reader }: { initial
     window.history.pushState({}, '', url);
     setSelected(path); setUnknown(false); clearTip();
     const module = path && content.documents[path].module;
-    if (module && module !== 'project') jumpToModule(module, false);
+    if (module && module !== 'project') selectModule(module);
     setTimeout(() => scrollToAnchor(anchor), 0);
   };
 
   useEffect(() => {
-    const media = window.matchMedia('(max-width: 720px)');
+    const media = window.matchMedia('(max-width: 720px), (max-width: 1024px) and (hover: none) and (pointer: coarse)');
     const sync = () => setCompact(media.matches);
     sync(); media.addEventListener('change', sync);
     return () => media.removeEventListener('change', sync);
   }, []);
-  useEffect(() => { if (compact) jumpToModule(activeModule, false); }, [compact]);
   useEffect(() => {
     const sync = () => {
       const url = new URL(window.location.href);
       const location = documentLocation(url, content.documents);
       setSelected(location.path); setUnknown(location.unknown); clearTip();
       const module = location.path && content.documents[location.path].module;
-      if (module && module !== 'project') jumpToModule(module, false);
+      if (module && module !== 'project') selectModule(module);
       setTimeout(() => scrollToAnchor(decodeAnchor(url.hash.slice(1))), 0);
     };
     sync(); window.addEventListener('popstate', sync);
@@ -141,7 +132,7 @@ export default function App({ initialPath, ReaderComponent = Reader }: { initial
       dialog.close(); window.document.body.classList.remove('detail-open');
       const target = opener.current;
       const module = target?.closest<HTMLElement>('.column')?.dataset.module;
-      if (module) jumpToModule(module, false);
+      if (module) selectModule(module);
     }
   }, [currentDocument]);
   useEffect(() => {
@@ -150,7 +141,10 @@ export default function App({ initialPath, ReaderComponent = Reader }: { initial
     const module = target?.closest<HTMLElement>('.column')?.dataset.module;
     // Focus only after React has removed inert from the entry column.
     if (target?.isConnected && (!compact || !module || activeModule === module)) {
-      target.focus({ preventScroll: true }); opener.current = null;
+      target.focus({ preventScroll: true });
+      const rect = target.getBoundingClientRect();
+      if (rect.top < 0 || rect.bottom > window.innerHeight) target.scrollIntoView({ block: 'nearest', behavior: 'instant' });
+      opener.current = null;
     }
   }, [currentDocument, activeModule, compact]);
   useEffect(() => {
@@ -165,17 +159,11 @@ export default function App({ initialPath, ReaderComponent = Reader }: { initial
 
   const search = query.trim().toLocaleLowerCase();
   const results = search ? Object.values(content.documents).filter((item) => item.module !== 'project' && `${item.title}\n${item.markdown}`.toLocaleLowerCase().includes(search)) : [];
-  return <main className="workspace" aria-label="学习、最佳实践与活动">
-    <nav className="level-switch" aria-label="切换栏目">{content.roots.map((node) => <button key={node.id} type="button" data-module={node.id} aria-current={activeModule === node.id ? 'true' : undefined} onClick={() => { clearTip(); jumpToModule(node.id); }}>{labels[node.id]}</button>)}</nav>
+  return <main className="workspace" data-active={compact ? activeModule : undefined} aria-label="学习、最佳实践与活动">
+    <nav className="level-switch" aria-label="切换栏目">{content.roots.map((node) => <button key={node.id} type="button" data-module={node.id} aria-current={activeModule === node.id ? 'true' : undefined} onClick={() => { clearTip(); selectModule(node.id); }}>{labels[node.id]}</button>)}</nav>
     {unknown && <p className="not-found" role="status">这份文档不存在，请从目录选择。</p>}
-    <div className="board" ref={boardRef} onScroll={() => {
-      const board = boardRef.current;
-      if (!board || !window.matchMedia('(max-width: 720px)').matches) return;
-      const columns = Array.from(board.querySelectorAll<HTMLElement>('.column'));
-      const nearest = columns.reduce((best, column) => Math.abs(column.offsetLeft - columns[0].offsetLeft - board.scrollLeft) < Math.abs(best.offsetLeft - columns[0].offsetLeft - board.scrollLeft) ? column : best, columns[0]);
-      if (nearest) setActiveModule(nearest.dataset.module!);
-    }}>
-      {content.roots.map((node) => <section className="column" key={node.id} data-module={node.id} aria-label={labels[node.id]} inert={compact && activeModule !== node.id ? true : undefined}>
+    <div className="board">
+      {content.roots.map((node) => <section className="column" key={node.id} data-module={node.id} data-active={activeModule === node.id ? 'true' : undefined} aria-label={labels[node.id]} inert={compact && activeModule !== node.id ? true : undefined}>
         <a className="column-label" href={documentUrl(node.documentPath!)} aria-describedby="node-description" onMouseEnter={(event) => showTip(event.currentTarget, node)} onMouseLeave={hideTip} onFocus={(event) => showTip(event.currentTarget, node)} onBlur={hideTip} onClick={(event) => { if (shouldFollow(event)) { event.preventDefault(); navigate(node.documentPath, '', event.currentTarget); } }}>{labels[node.id]}</a>
         <div className="slots">{(search ? results.filter((item) => item.module === node.id).map(resultNode) : node.children).map((child) => <TreeNode key={child.id} node={child} selected={selected} navigate={navigate} expansion={expansion} showTip={showTip} hideTip={hideTip} />)}</div>
       </section>)}

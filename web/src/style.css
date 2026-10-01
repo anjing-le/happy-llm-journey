@@ -108,19 +108,22 @@ body.detail-open { overflow: hidden; }
 .markdown th, .markdown td { text-align: left; border: 1px solid var(--section-border); padding: 10px 14px; min-width: 100px; }
 .markdown th { background: var(--section-bg); font-weight: 550; }
 .markdown hr { border: 0; border-top: 1px solid var(--section-border); margin: 32px 0; }
-@media (max-width: 720px) {
-  .workspace { padding: 28px 0 32px; }
-  .level-switch { display: flex; gap: 8px; margin: 0 16px 28px; }
+@media (max-width: 720px), (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+  .workspace { padding: calc(20px + env(safe-area-inset-top)) env(safe-area-inset-right) calc(24px + env(safe-area-inset-bottom)) env(safe-area-inset-left); }
+  .workspace[data-active] .level-switch { display: flex; gap: 8px; margin: 0 16px 20px; }
   .level-switch button { flex: 1; min-width: 0; border: 1px solid var(--section-border); background: var(--section-bg); color: var(--section-text); min-height: 44px; border-radius: 14px; font-size: 12px; white-space: nowrap; }
   .level-switch button[aria-current="true"] { background: var(--section-active); border-color: var(--section-accent); }
-  .board { display: flex; gap: 16px; padding: 4px 24px 16px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; }
-  .board::-webkit-scrollbar { display: none; }
-  .column { flex: 0 0 calc(100vw - 80px); padding: 0 0 20px; scroll-snap-align: start; scroll-margin-left: 24px; }
-  .column:last-child { margin-right: 32px; }
-  .column-label { display: none; }
+  .board { display: block; padding: 0 16px; }
+  .column { padding: 0 0 24px; }
+  .workspace[data-active] .column:not([data-active]) { display: none; }
+  .workspace[data-active] .column-label { display: none; }
   .block { min-height: 72px; border-radius: 14px; }
   .block-open { padding-left: 20px; }
-  .workspace-tools { padding: 12px 24px; gap: 16px; flex-wrap: wrap; }
+  .tree-children .detail-link { width: 44px; flex-basis: 44px; }
+  .workspace-tools { padding: 0 16px; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .workspace-tools > button, .workspace-tools > a, .search-panel summary { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; }
+  .search-panel { align-self: flex-start; }
+  .search-panel input { margin-top: 4px; font-size: 16px; }
   .detail { width: calc(100vw - 24px); height: calc(100dvh - 24px); max-width: calc(100vw - 24px); max-height: calc(100dvh - 24px); border-radius: 20px; }
   .detail-top { min-height: 70px; padding: 12px 14px; gap: 8px; }
   .document-name { font-size: 13px; }
