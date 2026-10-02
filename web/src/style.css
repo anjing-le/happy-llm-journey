@@ -49,6 +49,20 @@ button:focus-visible, a:focus-visible, summary:focus-visible, input:focus-visibl
 .detail-link { display: grid; place-items: center; align-self: stretch; width: 44px; flex: 0 0 44px; min-height: 44px; color: var(--section-accent); border-radius: 0 15px 15px 0; }
 .detail-link:hover { color: var(--section-text); }
 .detail-link svg { width: 17px; height: 17px; stroke: currentColor; stroke-width: 1.3; fill: none; }
+.copy-button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 0 9px; border: 0; border-radius: 8px; background: none; color: var(--section-text); white-space: nowrap; font-size: 12px; }
+.copy-button:hover { background: var(--section-active); }
+.copy-button:disabled { display: none; }
+.copy-button svg { width: 17px; height: 17px; flex: 0 0 17px; stroke: currentColor; stroke-width: 1.3; fill: none; }
+.copy-button.detail-link { border-radius: 0 15px 15px 0; padding: 0; color: var(--section-accent); }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.copy-fallback { position: fixed; inset: 0; margin: auto; width: min(620px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 18px; overflow-y: auto; border: 1px solid var(--section-border); border-radius: 16px; color: inherit; background: #fff; box-shadow: 0 20px 80px #27213626; }
+.copy-fallback::backdrop { background: #25203655; }
+.copy-fallback-top { display: flex; align-items: center; justify-content: space-between; font-size: 14px; }
+.copy-fallback-top button { width: 44px; height: 44px; border: 0; border-radius: 8px; background: none; font-size: 24px; }
+.copy-fallback p { margin: 4px 0 16px; font-size: 13px; line-height: 1.7; }
+.copy-fallback textarea { display: block; width: 100%; height: min(300px, 40dvh); padding: 12px; resize: vertical; border: 1px solid var(--section-border); border-radius: 8px; font: 16px/1.7 monospace; color: inherit; background: var(--section-bg); }
+.select-copy { min-height: 44px; margin-top: 8px; padding: 0 12px; border: 0; border-radius: 8px; color: var(--section-text); background: var(--section-bg); }
+body:has(.copy-fallback[open]) { overflow: hidden; }
 .directory-block { list-style: none; cursor: pointer; gap: 12px; padding-left: 20px; }
 .directory-block::-webkit-details-marker { display: none; }
 .directory-block > .block-title { flex: 1; padding: 16px 0; }
@@ -80,7 +94,9 @@ body.detail-open { overflow: hidden; }
 .detail:focus { outline: none; }
 .detail-top { display: flex; align-items: center; flex: 0 0 auto; gap: 16px; min-height: 76px; padding: 16px 26px; border-bottom: 1px solid var(--section-border); background: var(--section-bg); }
 .document-name { min-width: 0; font-size: 14px; line-height: 1.6; font-weight: 500; color: var(--section-text); overflow-wrap: anywhere; }
-.raw-link { margin-left: auto; white-space: nowrap; font-size: 12px; color: var(--section-text); }
+.detail-actions { display: flex; align-items: center; gap: 6px; margin-left: auto; flex: 0 0 auto; }
+.detail-actions .copy-button:has(> svg:only-child) { min-width: 44px; }
+.raw-link { display: inline-flex; align-items: center; min-height: 44px; padding: 0 6px; white-space: nowrap; font-size: 12px; color: var(--section-text); }
 .close-detail { display: grid; place-items: center; width: 44px; height: 44px; flex: 0 0 44px; border-radius: 50%; color: var(--section-accent); }
 .close-detail:hover { background: var(--section-active); }
 .close-detail svg { width: 17px; height: 17px; stroke: currentColor; stroke-width: 1.4; fill: none; }
@@ -125,8 +141,10 @@ body.detail-open { overflow: hidden; }
   .search-panel { align-self: flex-start; }
   .search-panel input { margin-top: 4px; font-size: 16px; }
   .detail { width: calc(100vw - 24px); height: calc(100dvh - 24px); max-width: calc(100vw - 24px); max-height: calc(100dvh - 24px); border-radius: 20px; }
-  .detail-top { min-height: 70px; padding: 12px 14px; gap: 8px; }
-  .document-name { font-size: 13px; }
+  .detail-top { display: grid; grid-template-columns: minmax(0, 1fr) 44px; min-height: 70px; padding: 10px 14px; gap: 0 8px; }
+  .document-name { font-size: 13px; grid-column: 1; grid-row: 1; }
+  .detail-top .close-detail { grid-column: 2; grid-row: 1; }
+  .detail-actions { grid-column: 1 / -1; grid-row: 2; margin-left: 0; gap: 8px; }
   .detail-scroll { padding: 28px 22px 40px; }
   .markdown { font-size: 14px; }
   .markdown h2 { font-size: 18px; }

@@ -2,6 +2,8 @@ import { lazy, Suspense, useEffect, useRef, useState, type ComponentProps, type 
 import index from './generated/content.json';
 import type { ContentData, ContentDocument, ContentNode } from './content-types';
 import { base, decodeAnchor, documentLocation, documentUrl, hasDocument, rawUrl, repositoryUrl } from './navigation';
+import CopyButton from './CopyButton';
+import { agentEntryPrompt, createDocumentCopy, publishedDocumentUrl } from './document-copy';
 
 const content = index as ContentData;
 const Reader = lazy(() => import('./Reader'));
@@ -32,7 +34,10 @@ function TreeNode({ node, selected, navigate, expansion, showTip, hideTip }: {
     if (!shouldFollow(event)) return;
     event.preventDefault(); event.stopPropagation(); hideTip(); navigate(node.documentPath, '', event.currentTarget);
   };
-  const detail = node.documentPath && <a className="detail-link" href={documentUrl(node.documentPath)} aria-label={`阅读：${node.title}`} aria-haspopup="dialog" aria-controls="document-detail" onClick={follow}><DocumentIcon /></a>;
+  const detail = node.documentPath && (directory
+    ? <a className="detail-link" href={documentUrl(node.documentPath)} aria-label={`阅读：${node.title}`} aria-haspopup="dialog" aria-controls="document-detail" onClick={follow}><DocumentIcon /></a>
+    : <CopyButton className="detail-link" iconOnly label="复制全文" target={node.title} beforeCopy={hideTip}
+      getText={() => createDocumentCopy(content.documents[node.documentPath!], content.documents)} />);
   const events = {
     onMouseEnter: (event: React.MouseEvent<HTMLElement>) => showTip(event.currentTarget, node),
     onMouseLeave: hideTip,
@@ -173,10 +178,11 @@ export default function App({ initialPath, ReaderComponent = Reader }: { initial
       <button type="button" aria-label="全部折叠" onClick={() => { clearTip(); setExpansion({ sequence: expansion.sequence + 1, open: false }); }}>收起</button>
       <details className="search-panel" onToggle={(event) => { if (!event.currentTarget.open) setQuery(''); }}><summary>查找</summary><input type="search" aria-label="查找内容" placeholder="查找内容" value={query} onChange={(event) => { setQuery(event.target.value); clearTip(); }} /></details>
       <a href={documentUrl('README.md')} onClick={(event) => { if (shouldFollow(event)) { event.preventDefault(); navigate('README.md', '', event.currentTarget); } }}>项目</a>
+      <CopyButton label="交给 Agent" getText={() => agentEntryPrompt(content.documents['README.md'])} beforeCopy={clearTip} />
       <a className="repository-link" href={repositoryUrl} target="_blank" rel="noreferrer">GitHub ↗</a>
     </footer>
     {tip && <aside id="node-description" className="tooltip" data-module={tip.module} role="tooltip" aria-label={`${tip.title}说明`} style={{ left: tip.left, top: tip.top }} onMouseEnter={() => clearTimeout(hideTimer.current)} onMouseLeave={hideTip}><p>{tip.description}</p><button type="button" aria-label="关闭说明" onClick={clearTip}>×</button></aside>}
-    <dialog className="detail" id="document-detail" data-module={currentDocument?.module} ref={dialogRef} open={Boolean(initialDocument) || undefined} aria-label={currentDocument?.title || '文档正文'} onCancel={(event) => { event.preventDefault(); navigate(); }} onClick={(event) => {
+    <dialog className="detail" id="document-detail" data-module={currentDocument?.module} ref={dialogRef} open={Boolean(initialDocument) || undefined} aria-label={currentDocument?.title || '文档正文'} onCancel={(event) => { if (event.target !== event.currentTarget) return; event.preventDefault(); navigate(); }} onClick={(event) => {
       if (event.target !== event.currentTarget) return;
       const rect = event.currentTarget.getBoundingClientRect();
       if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) navigate();
@@ -184,7 +190,11 @@ export default function App({ initialPath, ReaderComponent = Reader }: { initial
       {currentDocument && <>
         <div className="detail-top">
           <span className="document-name">{currentDocument.title}</span>
-          <a className="raw-link" href={rawUrl(currentDocument.path)} target="_blank" rel="noreferrer">原文 ↗</a>
+          <div className="detail-actions" key={currentDocument.path}>
+            <CopyButton label="复制全文" target={currentDocument.title} getText={() => createDocumentCopy(currentDocument, content.documents)} />
+            <CopyButton label="复制链接" target={currentDocument.title} iconOnly link getText={() => publishedDocumentUrl(currentDocument.path)} />
+            <a className="raw-link" href={rawUrl(currentDocument.path)} target="_blank" rel="noreferrer">Markdown ↗</a>
+          </div>
           <a className="close-detail" ref={closeRef} href={base} aria-label="关闭正文" onClick={(event) => { if (shouldFollow(event)) { event.preventDefault(); navigate(); } }}><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" /></svg></a>
         </div>
         <div className="detail-scroll" ref={scrollRef}><Suspense fallback={<p className="reader-loading" role="status">加载文档…</p>}><ReaderComponent key={currentDocument.path} document={currentDocument} navigate={navigate} documents={content.documents} /></Suspense></div>

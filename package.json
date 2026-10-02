@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "npm run dev --workspace web",
     "check": "npm run check --workspace web",
-    "build": "npm run build --workspace web",
+    "test": "npm run test --workspace web",
+    "build": "npm test && npm run build --workspace web",
     "preview": "npm run preview --workspace web"
   },
   "engines": { "node": ">=22.12.0" }
