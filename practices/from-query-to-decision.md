@@ -1,4 +1,4 @@
-# 从能查数到决策链：我对 AI 问数的理解
+# 问数：从能查数到决策链
 
 **共创** · 作者：[SummerBetter](https://github.com/SummerBetter)
 

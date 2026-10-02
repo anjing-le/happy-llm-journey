@@ -8,10 +8,10 @@
 
 ## 条目
 
-- [从能查数到决策链](from-query-to-decision.md)：AI 问数系统的演进、数据治理与决策闭环。个人经验，验证范围待补充。
+- [问数：从能查数到决策链](from-query-to-decision.md)：AI 问数系统的演进、数据治理与决策闭环。个人经验，验证范围待补充。
 
 ## 待打磨
 
-- [vibe coding 最佳实践](codex-vibe-coding.md)：原创，面向企业级项目的个人开发；使用说明与定制引导已起草，核心方法待打磨。
+- [vibe coding](codex-vibe-coding.md)：原创，面向企业级项目的个人开发；使用说明与定制引导已起草，核心方法待打磨。
 
 [目标与维护规则](../README.md#维护规则) · [返回首页](../README.md)
