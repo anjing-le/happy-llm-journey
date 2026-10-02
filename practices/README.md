@@ -14,4 +14,12 @@
 
 - [vibe coding](codex-vibe-coding.md)：原创，面向企业级项目的个人开发；使用说明与定制引导已起草，核心方法待打磨。
 
+## 待探索
+
+2026-10-02 收录的选题占位，尚无正文或验证结果。
+
+- [桌面宠物制作](desktop-pet.md)
+- [AIGC](aigc.md)
+- [Agent Infra](agent-infra.md)
+
 [目标与维护规则](../README.md#维护规则) · [返回首页](../README.md)
