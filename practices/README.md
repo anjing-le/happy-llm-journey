@@ -12,7 +12,7 @@
 
 ## 待打磨
 
-- [vibe coding](codex-vibe-coding.md)：原创，面向企业级项目的个人开发；「安静の coding」Skill 已建空壳，核心规则待打磨。
+- [vibe coding](codex-vibe-coding.md)：原创，面向企业级项目的个人开发；「安静 の coding」Skill 已建空壳，核心规则待打磨。
 
 ## 待探索
 

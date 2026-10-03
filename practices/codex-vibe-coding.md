@@ -4,7 +4,7 @@
 
 状态：逐段打磨中。已起草使用说明与定制引导，核心方法待补充，尚未试用；作者署名待补充。
 
-「安静の coding」Skill 位于仓库的 `.agents/skills/anjing-coding/`，目前仅有名称与描述。
+「安静 の coding」Skill 位于仓库的 `.agents/skills/anjing-coding/`，目前仅有名称与描述。
 
 ## 如何使用
 
