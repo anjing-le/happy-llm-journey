@@ -58,6 +58,6 @@ npm run preview # 预览构建结果
 - [ ] 评审[第二期设计](activities/02-how-to-vibe-coding/DESIGN.md)，选一个 coding 任务试跑，再适配旧材料。
 - [ ] 结合题目明确各期参与基础与完成标准。
 - [ ] 梳理工程与算法的必要知识索引，按需补内容。
-- [ ] 内容打磨：[vibe coding](practices/codex-vibe-coding.md)。面向企业级项目的个人开发；「安静 の coding」Skill 已在 `.agents/skills/anjing-coding/` 建立空壳，尚无核心规则。下一步逐条打磨规则，在真实任务中试用，再完善文章指引。
+- [ ] 内容打磨：[vibe coding](practices/codex-vibe-coding.md)。逐条打磨「安静 の coding」Skill（`.agents/skills/anjing-coding/`）→ 按明确的目标与验收标准试跑、修订 → 完善文章 → 模拟首次使用。当前仅录入「独立判断」，其余规则与试跑目标待定，尚未验证。
 - [ ] 从[待探索选题](practices/README.md#待探索)中逐项选择真实任务，积累案例后再形成方法；当前仅有选题占位。
 - [ ] 用一篇文章和一个真实目标，试用“阅读 → 复制正文 → Agent”，记录结果与问题，再修订使用入口。
