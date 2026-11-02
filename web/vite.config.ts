@@ -11,7 +11,7 @@ export default defineConfig({
   plugins: [{
     name: 'repository-markdown',
     configureServer(server) {
-      const sources = ['knowledge', 'practices', 'activities', 'README.md', 'AGENTS.md'];
+      const sources = ['knowledge', 'practices', 'activities', 'README.md', 'README.zh-CN.md', 'AGENTS.md'];
       server.watcher.add(sources.map((source) => path.join(repository, source)));
       let timer: ReturnType<typeof setTimeout>;
       const rebuild = (filename: string) => {
