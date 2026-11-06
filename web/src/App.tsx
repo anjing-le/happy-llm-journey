@@ -177,8 +177,8 @@ export default function App({ initialPath, ReaderComponent = Reader }: { initial
       <button type="button" aria-label="全部展开" onClick={() => { clearTip(); setExpansion({ sequence: expansion.sequence + 1, open: true }); }}>展开</button>
       <button type="button" aria-label="全部折叠" onClick={() => { clearTip(); setExpansion({ sequence: expansion.sequence + 1, open: false }); }}>收起</button>
       <details className="search-panel" onToggle={(event) => { if (!event.currentTarget.open) setQuery(''); }}><summary>查找</summary><input type="search" aria-label="查找内容" placeholder="查找内容" value={query} onChange={(event) => { setQuery(event.target.value); clearTip(); }} /></details>
-      <a href={documentUrl('README.md')} onClick={(event) => { if (shouldFollow(event)) { event.preventDefault(); navigate('README.md', '', event.currentTarget); } }}>项目</a>
-      <CopyButton label="交给 Agent" getText={() => agentEntryPrompt(content.documents['README.md'])} beforeCopy={clearTip} />
+      <a href={documentUrl('GUIDE.zh-CN.md')} onClick={(event) => { if (shouldFollow(event)) { event.preventDefault(); navigate('GUIDE.zh-CN.md', '', event.currentTarget); } }}>项目</a>
+      <CopyButton label="交给 Agent" getText={() => agentEntryPrompt(content.documents['GUIDE.zh-CN.md'])} beforeCopy={clearTip} />
       <a className="repository-link" href={repositoryUrl} target="_blank" rel="noreferrer">GitHub ↗</a>
     </footer>
     {tip && <aside id="node-description" className="tooltip" data-module={tip.module} role="tooltip" aria-label={`${tip.title}说明`} style={{ left: tip.left, top: tip.top }} onMouseEnter={() => clearTimeout(hideTimer.current)} onMouseLeave={hideTip}><p>{tip.description}</p><button type="button" aria-label="关闭说明" onClick={clearTip}>×</button></aside>}

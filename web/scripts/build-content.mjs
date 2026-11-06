@@ -240,7 +240,7 @@ async function writeGenerated(roots) {
 
 const roots = [];
 for (const module of modules) roots.push(await directory(module, module));
-for (const relative of ['README.md', 'README.zh-CN.md', 'AGENTS.md']) await loadDocument(relative, 'project');
+for (const relative of ['README.md', 'README.zh-CN.md', 'GUIDE.md', 'GUIDE.zh-CN.md', 'AGENTS.md']) await loadDocument(relative, 'project');
 const markdownLinks = await validateReferences();
 await writeGenerated(roots);
 console.log(`Generated ${Object.keys(documents).length} documents, ${resources.size} local resources; ${markdownLinks} relative Markdown links mapped.`);
