@@ -1,7 +1,7 @@
 {
   "repository": "anjing-le/happy-llm-journey",
   "created_at": "2026-09-17T15:55:19Z",
-  "as_of": "2026-11-11T09:15:53.260160+00:00",
+  "as_of": "2026-11-11T09:24:00.090815+00:00",
   "current_stars": 2,
   "starred_at": [
     "2026-09-21T08:14:26+00:00",
@@ -9,5 +9,6 @@
   ],
   "source": "REST stargazers",
   "semantics": "Current stargazers by original star date; removed stars excluded. Not historical net totals.",
-  "timezone": "UTC"
+  "timezone": "UTC",
+  "visualization": "Dots are actual event totals; the monotone smoothed curve is visual interpolation, not observed intermediate counts."
 }
