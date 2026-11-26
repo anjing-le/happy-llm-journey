@@ -169,6 +169,7 @@ export default function App({ initialPath, ReaderComponent = Reader }: { initial
   }, []);
   useEffect(() => {
     const sync = () => {
+      pendingSectionScroll.current = '';
       const url = new URL(window.location.href);
       const location = documentLocation(url, content.documents);
       const document = location.path && content.documents[location.path];
