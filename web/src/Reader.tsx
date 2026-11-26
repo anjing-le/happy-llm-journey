@@ -15,17 +15,21 @@ function isDecorativeImage(src: string) {
   catch { return false; }
 }
 
-export default function Reader({ document, navigate, documents }: { document: ContentDocument; navigate: Navigate; documents: Record<string, ContentDocument> }) {
+export default function Reader({ document, navigate, documents, focus = true, sectionAnchor }: { document: ContentDocument; navigate: Navigate; documents: Record<string, ContentDocument>; focus?: boolean; sectionAnchor?: string }) {
   const articleRef = useRef<HTMLElement>(null);
+  const firstContentOffset = document.markdown.search(/\S/);
   useEffect(() => {
+    if (!focus) return;
     articleRef.current?.focus({ preventScroll: true });
     const anchor = decodeAnchor(window.location.hash.slice(1));
     if (anchor) requestAnimationFrame(() => window.document.getElementById(anchor)?.scrollIntoView({ block: 'start' }));
-  }, [document.path]);
+  }, [document.path, focus]);
   return <section className="reader" aria-label={document.title}>
     <article className="markdown" tabIndex={-1} ref={articleRef}>
       <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]} urlTransform={(url) => defaultUrlTransform(resolveMarkdownUrl(url, document.path, documents))} components={{
         h1: ({ id }) => <span id={id} className="heading-anchor" aria-hidden="true" style={{ display: 'block', height: 0, overflow: 'hidden' }} />,
+        h2: ({ id, node, ...props }) => <h2 {...props} id={sectionAnchor && node?.position?.start.offset === firstContentOffset ? sectionAnchor : id} />,
+        h3: ({ id, node, ...props }) => <h3 {...props} id={sectionAnchor && node?.position?.start.offset === firstContentOffset ? sectionAnchor : id} />,
         a: ({ href, children, node: _node, ...props }) => {
           const internal = href?.startsWith(`${base}read/`) || href?.startsWith('?doc=');
           return <a {...props} href={href} target={internal || href?.startsWith('#') ? undefined : '_blank'} rel={internal ? undefined : 'noreferrer'} onClick={(event) => {

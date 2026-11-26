@@ -13,7 +13,7 @@ The linked learning materials and website currently remain primarily in Chinese.
 ## How to use
 
 - **Read directly**: Open the content overview above and select an entry.
-- **Use an article**: Copy its full text from the entry or reading window, then give it to an Agent along with your goal. Copied content includes sources and accessible reference links.
+- **Use an article**: Copy its full text from the entry or article toolbar, then give it to an Agent along with your goal. Copied content includes sources and accessible reference links.
 - **Start from the repository**: Use the website's “Hand to Agent” entry, or copy this prompt:
 
 ```text
@@ -42,7 +42,7 @@ Knowledge supplies understanding and evidence. Guidance explains how to understa
 
 Content and the frontend share this repository: the three modules contain Markdown; `web/` contains React, TypeScript and Vite. Node.js 22.12+ is required.
 
-The site follows Happy GitHub Journey's simple layout: Learning, Best Practices and Activities in three columns, with collapsible navigation, hover descriptions and articles in reading dialogs. Mobile uses top tabs to show one column at a time. Article rows and reading windows support copying full text; reading windows also offer link copying and original Markdown. Manual copying is available when automatic copying fails. The website homepage omits a large brand heading and promotional image; avoid duplicate article titles and use diagrams where helpful.
+The top tabs switch between Learning, Best Practices and Activities. Navigation sits on the left, reading or a content map in the center, and article navigation or source explanations on the right. Maps derive from existing directories and Markdown sections; connectors indicate hierarchy. Select a section to read its original text and move between sections. On mobile, the directory expands on demand and context follows the article. Entry rows and article tools retain full-text copying, link copying, original Markdown and a manual-copy fallback. Markdown remains the single content source; opening a page or section is not proof of learning.
 
 ```sh
 npm ci

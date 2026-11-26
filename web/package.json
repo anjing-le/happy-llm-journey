@@ -9,12 +9,15 @@
     "dev": "vite --host 127.0.0.1",
     "precheck": "npm run content",
     "check": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test src/document-copy.test.ts",
+    "test": "node --experimental-strip-types --test src/document-copy.test.ts src/document-outline.test.ts",
     "build": "npm run check && vite build && vite build --ssr src/entry-server.tsx --outDir .ssr && node scripts/prerender.mjs",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {
+    "github-slugger": "^2.0.0",
     "mdast-util-from-markdown": "^2.0.3",
+    "mdast-util-gfm": "^3.1.0",
+    "micromark-extension-gfm": "^3.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-markdown": "^10.1.0",
