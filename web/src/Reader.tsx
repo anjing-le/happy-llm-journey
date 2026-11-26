@@ -15,9 +15,10 @@ function isDecorativeImage(src: string) {
   catch { return false; }
 }
 
-export default function Reader({ document, navigate, documents, focus = true, sectionAnchor }: { document: ContentDocument; navigate: Navigate; documents: Record<string, ContentDocument>; focus?: boolean; sectionAnchor?: string }) {
+export default function Reader({ document, navigate, documents, focus = true, sectionAnchor, onReady }: { document: ContentDocument; navigate: Navigate; documents: Record<string, ContentDocument>; focus?: boolean; sectionAnchor?: string; onReady?: () => void }) {
   const articleRef = useRef<HTMLElement>(null);
   const firstContentOffset = document.markdown.search(/\S/);
+  useEffect(() => { onReady?.(); }, [document.markdown, onReady]);
   useEffect(() => {
     if (!focus) return;
     articleRef.current?.focus({ preventScroll: true });

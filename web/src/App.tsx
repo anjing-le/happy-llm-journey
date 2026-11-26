@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useMemo, useRef, useState, type ComponentProps, type ComponentType, type MouseEvent } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState, type ComponentProps, type ComponentType, type MouseEvent } from 'react';
 import index from './generated/content.json';
 import type { ContentData, ContentDocument, ContentNode } from './content-types';
 import { base, decodeAnchor, documentLocation, documentUrl, hasDocument, rawUrl, repositoryUrl } from './navigation';
@@ -76,6 +76,7 @@ export default function App({ initialPath, ReaderComponent = Reader }: { initial
   const searchTrigger = useRef<HTMLButtonElement>(null);
   const contentRef = useRef<HTMLElement>(null);
   const contextRef = useRef<HTMLElement>(null);
+  const pendingSectionScroll = useRef('');
   const activeRoot = content.roots.find(node => node.id === activeModule) || content.roots[0];
   const currentDocument = selected && hasDocument(content.documents, selected) ? content.documents[selected] : content.documents[activeRoot.documentPath!];
   const currentNode = findNode(content.roots, currentDocument.path);
@@ -94,6 +95,17 @@ export default function App({ initialPath, ReaderComponent = Reader }: { initial
   const search = query.trim().toLocaleLowerCase();
   const results = search ? Object.values(content.documents).filter(document => document.module !== 'project' && `${document.title}\n${document.markdown}`.toLocaleLowerCase().includes(search)) : [];
 
+  const revealSection = useCallback(() => {
+    contextRef.current?.scrollTo({ top: 0 });
+    if (window.matchMedia('(max-width: 1100px)').matches) contextRef.current?.scrollIntoView({ block: 'start', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+  }, []);
+  const sectionReady = useCallback(() => {
+    if (!pendingSectionScroll.current || pendingSectionScroll.current !== activeSection?.id) return;
+    pendingSectionScroll.current = '';
+    // A lazy Reader can make the initial scroll stop at the loading placeholder's page end.
+    requestAnimationFrame(revealSection);
+  }, [activeSection?.id, revealSection]);
+
   const scrollToAnchor = (anchor: string) => requestAnimationFrame(() => {
     const target = anchor ? window.document.getElementById(anchor) || contentRef.current : contentRef.current;
     target?.scrollIntoView({ block: 'start' });
@@ -101,6 +113,7 @@ export default function App({ initialPath, ReaderComponent = Reader }: { initial
   const selectModule = (module: string) => {
     const root = content.roots.find(node => node.id === module);
     if (!root?.documentPath) return;
+    pendingSectionScroll.current = '';
     setActiveModule(module); setSelected(undefined); setView('map'); setSectionId(''); setUnknown(false); setSidebarOpen(false);
     window.history.pushState({ journeyView: 'map' }, '', documentUrl(root.documentPath));
     window.scrollTo({ top: 0 });
@@ -108,6 +121,7 @@ export default function App({ initialPath, ReaderComponent = Reader }: { initial
   const navigate: Navigate = (path, anchor = '') => {
     if (!path) { selectModule(activeModule); return; }
     if (!hasDocument(content.documents, path)) return;
+    pendingSectionScroll.current = '';
     const document = content.documents[path];
     setSelected(path); setView('read'); setSectionId(anchor); setUnknown(false); setSidebarOpen(false); setSearchOpen(false);
     if (document.module !== 'project') setActiveModule(document.module);
@@ -120,13 +134,11 @@ export default function App({ initialPath, ReaderComponent = Reader }: { initial
     if (nextView !== visibleView) setView(nextView);
     setSectionId(section.id);
     window.history.pushState({ journeyView: nextView }, '', documentUrl(currentDocument.path, section.id));
-    if (nextView === 'read') scrollToAnchor(section.id);
-    else requestAnimationFrame(() => {
-      contextRef.current?.scrollTo({ top: 0 });
-      if (window.matchMedia('(max-width: 1100px)').matches) contextRef.current?.scrollIntoView({ block: 'start', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
-    });
+    if (nextView === 'read') { pendingSectionScroll.current = ''; scrollToAnchor(section.id); }
+    else { pendingSectionScroll.current = section.id; requestAnimationFrame(revealSection); }
   };
   const chooseView = (next: View) => {
+    pendingSectionScroll.current = '';
     setView(next);
     window.history.replaceState({ ...window.history.state, journeyView: next }, '');
     if (next === 'read' && sectionId) scrollToAnchor(sectionId);
@@ -237,7 +249,7 @@ export default function App({ initialPath, ReaderComponent = Reader }: { initial
         <div className="context-card">
           {visibleView === 'map' && !isDirectoryMap && sectionDocument ? <>
             <div className="context-label"><span>当前章节</span><span className="section-count">{sectionIndex + 1} / {sections.length}</span></div>
-            <div className="section-reader"><Suspense fallback={<p className="reader-loading">加载章节…</p>}><ReaderComponent document={sectionDocument} navigate={navigate} documents={content.documents} focus={false} sectionAnchor={activeSection.id} /></Suspense></div>
+            <div className="section-reader"><Suspense fallback={<p className="reader-loading">加载章节…</p>}><ReaderComponent document={sectionDocument} navigate={navigate} documents={content.documents} focus={false} sectionAnchor={activeSection.id} onReady={sectionReady} /></Suspense></div>
             <div className="context-bottom"><div className="step-actions"><button type="button" aria-label="上一章节" disabled={sectionIndex <= 0} onClick={() => chooseSection(sections[sectionIndex - 1])}><Icon name="back" />上一步</button><button type="button" aria-label="下一章节" disabled={sectionIndex >= sections.length - 1} onClick={() => chooseSection(sections[sectionIndex + 1])}>下一步<Icon name="arrow" /></button></div></div>
           </> : <>
             <div className="context-label">{visibleView === 'map' ? '本栏说明' : '本篇目录'}</div>
