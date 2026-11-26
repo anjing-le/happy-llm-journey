@@ -211,7 +211,7 @@ export default function App({ initialPath, ReaderComponent = Reader }: { initial
   const guide = content.documents['GUIDE.zh-CN.md'];
   const sectionIndex = activeSection ? sections.indexOf(activeSection) : 0;
 
-  return <main className="journey-shell" data-module={activeModule} data-theme={theme} data-enhanced={enhanced ? 'true' : undefined} aria-label="学习、最佳实践与活动">
+  return <main className="journey-shell" data-module={activeModule} data-view={visibleView} data-theme={theme} data-enhanced={enhanced ? 'true' : undefined} aria-label="学习、最佳实践与活动">
     <header className="app-header">
       <a className="brand" href={base} onClick={event => { if (shouldFollow(event)) { event.preventDefault(); selectModule('knowledge'); } }}><img className="brand-mark" src={`${base}favicon-ai.png`} alt="" /><span>Happy <strong>LLM</strong> Journey</span></a>
       <nav className="module-tabs" aria-label="切换栏目">{content.roots.map(node => <a key={node.id} href={documentUrl(node.documentPath!)} aria-current={activeModule === node.id ? 'page' : undefined} onClick={event => { if (shouldFollow(event)) { event.preventDefault(); selectModule(node.id); } }}><Icon name={moduleIcons[node.id]} /><span>{labels[node.id]}</span></a>)}</nav>
@@ -240,7 +240,7 @@ export default function App({ initialPath, ReaderComponent = Reader }: { initial
         </div>
 
         <div className={`content-surface ${visibleView === 'read' ? 'reader-surface' : ''}`}>
-          {visibleView === 'map' ? <ContentMap title={!selected ? labels[activeModule] : currentDocument.title} entries={mapEntries} selected={isDirectoryMap ? undefined : activeSection?.id} icon={moduleIcons[currentDocument.module]} onChoose={chooseMapEntry} /> : <Suspense fallback={<p className="reader-loading" role="status">加载正文…</p>}><ReaderComponent key={currentDocument.path} document={currentDocument} navigate={navigate} documents={content.documents} /></Suspense>}
+          {visibleView === 'map' ? <ContentMap key={currentDocument.path} title={!selected ? labels[activeModule] : currentDocument.title} entries={mapEntries} selected={isDirectoryMap ? undefined : activeSection?.id} icon={moduleIcons[currentDocument.module]} onChoose={chooseMapEntry} /> : <Suspense fallback={<p className="reader-loading" role="status">加载正文…</p>}><ReaderComponent key={currentDocument.path} document={currentDocument} navigate={navigate} documents={content.documents} /></Suspense>}
         </div>
         {visibleView === 'map' && <p className="map-caption">{isDirectoryMap ? '选择一个节点，阅读对应内容。' : '选择一个章节，查看原文。'}</p>}
         {visibleView === 'map' && !isDirectoryMap && sections.length > 1 && <nav className="step-navigation" aria-label="章节顺序">{sections.map((section, position) => <button key={section.id} type="button" className={`step-chip${activeSection?.id === section.id ? ' is-active' : ''}`} aria-current={activeSection?.id === section.id ? 'step' : undefined} onClick={() => chooseSection(section)}><span>{position + 1}</span>{section.title}</button>)}</nav>}

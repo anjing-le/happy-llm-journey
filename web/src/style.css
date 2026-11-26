@@ -320,6 +320,27 @@ body:has(.copy-fallback[open]), body:has(.search-dialog[open]) { overflow: hidde
 .map-node:active .map-tile { transform: translateY(2px); }
 .module-tabs > a:active, .header-tools > button:active, .view-switch > button:active, .document-actions > button:active, .document-actions > a:active, .document-tools > button:active, .step-actions > button:not(:disabled):active, .step-chip:active, .select-copy:active { transform: translateY(2px); box-shadow: inset 0 1px 1px var(--shadow), 0 0 0 var(--button-depth); }
 
+/* Fit desktop overviews to the available window, without shrinking long articles. */
+@media (min-width: 1101px) {
+  .journey-shell[data-view="map"] .app-layout { height: calc(100dvh - var(--header-height)); min-height: 0; grid-template-rows: minmax(0, 1fr); }
+  .journey-shell[data-view="map"] .sidebar,
+  .journey-shell[data-view="map"] .context-column { max-height: 100%; }
+  .journey-shell[data-view="map"] .reading-column { display: flex; flex-direction: column; height: 100%; min-height: 0; padding-top: 16px; padding-bottom: 14px; overflow: hidden; }
+  .journey-shell[data-view="map"] .document-header { flex: 0 0 auto; padding-bottom: 12px; }
+  .journey-shell[data-view="map"] .document-eyebrow { margin-bottom: 6px; }
+  .journey-shell[data-view="map"] .document-heading { font-size: clamp(24px, 2vw, 30px); }
+  .journey-shell[data-view="map"] .document-subtitle { display: none; }
+  .journey-shell[data-view="map"] .document-actions { margin-top: 12px; }
+  .journey-shell[data-view="map"] .content-surface { display: flex; flex: 1 1 0; flex-direction: column; min-height: 0; }
+  .journey-shell[data-view="map"] .map-surface { flex: 1 1 0; min-height: 0; padding-top: 12px; padding-bottom: 12px; }
+  .journey-shell[data-view="map"] .map-svg { flex: 1 1 0; min-height: 0; height: 100%; }
+  .journey-shell[data-view="map"] .map-surface[data-overflow="scroll"] { justify-content: flex-start; overflow-y: auto; overscroll-behavior-y: contain; scrollbar-width: thin; }
+  .journey-shell[data-view="map"] .map-surface[data-overflow="scroll"] .map-svg { flex: 0 0 auto; height: auto; }
+  .journey-shell[data-view="map"] .map-caption { flex: 0 0 auto; margin-top: 8px; }
+  .journey-shell[data-view="map"] .step-navigation { flex: 0 0 auto; flex-wrap: nowrap; margin-top: 10px; overflow-x: auto; scrollbar-width: thin; }
+  .journey-shell[data-view="map"] .step-chip { flex: 0 0 auto; max-width: 190px; }
+}
+
 @media (max-width: 1100px) {
   .app-header { gap: 12px; padding-right: 18px; padding-left: 18px; }
   .brand { flex-basis: 168px; }

@@ -103,33 +103,39 @@ export default function ContentMap({ title, entries, selected, icon = 'book', on
   onChoose: (entry: MapEntry) => void;
 }) {
   const container = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(700);
+  const [size, setSize] = useState({ width: 700, height: 0 });
   useEffect(() => {
     const element = container.current;
     if (!element) return;
-    const observer = new ResizeObserver(([record]) => setWidth(Math.max(240, record.contentRect.width)));
+    const observer = new ResizeObserver(([record]) => {
+      const next = { width: Math.max(240, Math.round(record.contentRect.width)), height: Math.round(record.contentRect.height) };
+      setSize(previous => previous.width === next.width && previous.height === next.height ? previous : next);
+    });
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
+  const { width } = size;
   const columns = width < 600 ? 1 : width < 800 ? 2 : 3;
   const rows = Math.ceil(entries.length / columns);
-  const height = Math.max(490, 340 + (rows - 1) * 230 + 150);
+  const height = Math.max(450, 320 + (rows - 1) * 230 + 130);
   const positions = entries.map((_, index) => {
     const row = Math.floor(index / columns);
     const rowCount = Math.min(columns, entries.length - row * columns);
-    return { x: columns === 1 ? width / 2 + 18 : width * ((index % columns) + 1) / (rowCount + 1), y: 340 + row * 230 };
+    return { x: columns === 1 ? width / 2 + 18 : width * ((index % columns) + 1) / (rowCount + 1), y: 320 + row * 230 };
   });
   const follow = (event: MouseEvent<Element>, entry: MapEntry) => {
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     onChoose(entry);
   };
-  return <div className="map-surface" ref={container}>
-    {entries.length ? <svg className="map-svg" viewBox={`0 0 ${width} ${height}`} width="100%" height={height} role="group" aria-label={`${title}内容结构`}>
+  // Keep diagram labels at least 9px instead of compressing long maps indefinitely.
+  const scrollMap = size.height > 0 && size.height / height < 9 / 13;
+  return <div className="map-surface" ref={container} data-overflow={scrollMap ? 'scroll' : 'fit'}>
+    {entries.length ? <svg className="map-svg" viewBox={`0 0 ${width} ${height}`} width="100%" height={height} preserveAspectRatio="xMidYMid meet" role="group" aria-label={`${title}内容结构`}>
       <title>{`${title}内容结构`}</title>
       <desc>选择一个节点，阅读对应文档或章节。连线表示目录归属。</desc>
       <g aria-hidden="true">
-        <path className="map-edge" d={`M${width / 2} 224 V236 H20 V${positions.at(-1)!.y - 104}`} fill="none" stroke="var(--line-strong)" />
+        <path className="map-edge" d={`M${width / 2} 214 V216 H20 V${positions.at(-1)!.y - 104}`} fill="none" stroke="var(--line-strong)" />
         {Array.from({ length: rows }, (_, row) => {
           const rowNodes = positions.slice(row * columns, (row + 1) * columns);
           return <path key={row} className="map-edge" d={`M20 ${rowNodes[0].y - 104} H${rowNodes.at(-1)!.x}`} fill="none" stroke="var(--line-strong)" />;
